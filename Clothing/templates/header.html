@@ -1,0 +1,110 @@
+{% load static %}
+<head>
+	<!-- set the encoding of your site -->
+	<meta charset="utf-8">
+	<!-- set the Compatible of your site -->
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- set the page title -->
+	<title>Botanical - HTML5 Ecommerce Template</title>
+	<!-- include the site Google Fonts stylesheet -->
+	<link
+		href= "https://fonts.googleapis.com/css?family=Playfair+Display:400,700%7CRoboto:300,400,500,700,900&amp;display=swap"
+		rel="stylesheet">
+	<!-- include the site bootstrap stylesheet -->
+	<link rel="stylesheet" href= '{% static "css/bootstrap.css" %}'  >
+	<!-- include the site fontawesome stylesheet -->
+	<link rel="stylesheet" href='{% static "css/fontawesome.css" %}' >
+	<!-- include the site stylesheet -->
+	<link rel="stylesheet" href= '{% static "css/style.css" %}' >
+	<!-- include theme plugins setting stylesheet -->
+	<link rel="stylesheet" href= '{% static  "css/plugins.css" %}' >
+	<!-- include theme color setting stylesheet -->
+	<link rel="stylesheet" href='{% static "css/color.css" %}'>
+	<!-- include theme responsive setting stylesheet -->
+	<link rel="stylesheet" href='{% static "css/responsive.css" %}' >
+
+</head>
+
+
+<header id="header" class="position-relative">
+    <!-- headerHolderCol -->
+
+    <!-- headerHolder -->
+    <div class="headerHolder container pt-lg-5 pb-lg-7 py-4">
+        <div class="row">
+            <div class="col-6 col-sm-2">
+                <!-- mainLogo -->
+                <div class="logo">
+                    <a href="javascript:void(0);"><img src='{% static "images/logo.png" %}'  alt="Botanical"
+                            class="img-fluid"></a>
+                </div>
+            </div>
+            <div class="col-6 col-sm-7 col-lg-8 static-block">
+                <!-- mainHolder -->
+                <div class="mainHolder pt-lg-5 pt-3 justify-content-center">
+                    <!-- pageNav2 -->
+                    <nav class="navbar navbar-expand-lg navbar-light p-0 pageNav2 position-static">
+                        <button type="button" class="navbar-toggle collapsed position-relative"
+                            data-toggle="collapse" data-target="#navbarNav" aria-expanded="false">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarNav">
+                            <ul class="navbar-nav mx-auto text-uppercase d-inline-block">
+                                <li class="nav-item">
+                                    <a class="d-block" href="about-us.html">Home</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="d-block" href="{% url 'shop' %}">Store</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="d-block" href="about-us.html">About</a>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a class="dropdown-toggle d-block" role="button" data-toggle="dropdown"
+                                        aria-haspopup="true" aria-expanded="false">Blog</a>
+                                    <ul class="list-unstyled text-capitalize dropdown-menu mt-0 py-0">
+                                        <li class="d-block mx-0"><a href="blog.html">Blog Left Sidebar</a></li>
+                                        <li class="d-block mx-0"><a href="blog-detail.html">Blog Detail</a></li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a class="dropdown-toggle d-block" role="button" data-toggle="dropdown"
+                                        aria-haspopup="true" aria-expanded="false">Pages</a>
+                                    <ul class="list-unstyled text-capitalize dropdown-menu mt-0 py-0">
+                                        <li class="d-block mx-0"><a href="{% url 'cart' %}">Cart Page</a></li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="d-block" href="contact-us.html">contact</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+            <div class="col-sm-3 col-lg-2">
+                <ul class="nav nav-tabs wishListII pt-5 justify-content-end border-bottom-0">
+                    <li class="nav-item ml-0"><a class="nav-link icon-heart" href="{% url 'wish' %}"></a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link position-relative icon-cart"
+                            href="{% url 'cart' %}"><span class="num rounded d-block">{{count_cart}}</span></a></li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link icon-profile dropdown-toggle" href="javascript:void(0);" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item p-3" href='{% url "dash" %}'>Add product</a>
+                                    <a class="dropdown-item p-3" href="#">Edit product</a>
+                                    <a class="dropdown-item p-3" href="#">Delete product</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item p-3" href="#">Logout</a>
+                                </div>
+                            </li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+</header>

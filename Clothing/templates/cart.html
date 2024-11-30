@@ -1,0 +1,95 @@
+{% include "header.html" %}
+{% load static %}
+<style>
+    .input-group {
+  display: flex;
+  
+  
+  flex-direction: row;
+
+  
+}
+
+button,
+input {
+  outline: none;
+  border: none;
+  padding: 10px;
+  font-size: 15px;
+  border-radius: 5px;
+}
+
+input {
+    width: 50px;
+  text-align: center;
+}
+
+button {
+  cursor: pointer;
+}
+
+
+button:hover {
+  background-color: #8f8b8b;
+}
+    .imgHold img {
+        width: auto;      /* স্বাভাবিক আকার */
+        height: auto;     /* স্বাভাবিক আকার */
+        max-width: 100%;  /* প্যারেন্টের ১০০% আকারে সীমাবদ্ধ */
+        max-height: 50px; /* ১৫০ পিক্সেলের সর্বাধিক উচ্চতা */
+    }
+</style>
+
+
+<div class="cartHolder container pt-xl-21 pb-xl-24 py-lg-20 py-md-16 py-10">
+    <div class="row">
+        <!-- table-responsive -->
+        <div class="col-12 table-responsive mb-lg-20 mb-md-16 mb-10">
+            <!-- cartTable -->
+            <table class="table cartTable mb-xl-22">
+                <thead>
+                    <tr>
+                        <th scope="col" class="text-uppercase fwEbold border-top-0">product</th>
+                        <th scope="col" class="text-uppercase fwEbold border-top-0">Color</th>
+                        <th scope="col" class="text-uppercase fwEbold border-top-0">Size</th>
+                        <th scope="col" class="text-uppercase fwEbold border-top-0">price</th>
+                        <th scope="col" class="text-uppercase fwEbold border-top-0">quantity</th>
+                        <th scope="col" class="text-uppercase fwEbold border-top-0">total</th>
+                    </tr>
+                </thead>
+                {%for item in cart_item%}
+                <tbody>
+                    <tr class="align-items-center">
+                        <td class="d-flex align-items-center border-top-0 border-bottom px-0 py-6">
+                            <div class="imgHold">
+                                <img src='{{item.product.image.url}}' alt="image description" class="img-fluid">
+                            </div>
+                            <span class="title pl-2"><a href="{{item.product.url}}">{{item.product.name}}</a></span>
+                        </td>
+                        <td class="fwEbold border-top-0 border-bottom px-0 py-6"> {{item.color}} </td>
+                        <td class="fwEbold border-top-0 border-bottom px-0 py-6"> {{item.size}} </td>
+                        <td class="fwEbold border-top-0 border-bottom px-0 py-6">{{item.product.price}}</td>
+                        <td class="border-top-0 border-bottom px-0 py-6">
+                            <a href="{% url 'dell' item.product.id item.color item.size %}"><button id="increment">-</button></a>
+                            <input type="number" id="input" value="{{item.quantity}}" readonly>
+                            <a href="{% url 'add' item.product.id item.color item.size %}"><button id="increment">+</button></a>
+                        </td>                        
+                        <td class="fwEbold border-top-0 border-bottom px-0 py-6"> {{item.subtotal}} <a href="" class="fas fa-times float-right"></a></td>
+                    </tr>
+                    
+                </tbody>
+                {%endfor%}
+            </table>
+            <div class="d-flex justify-content-between">
+                <strong class="txt fwEbold text-uppercase mb-1">subtotal</strong>
+                <strong class="price fwEbold text-uppercase mb-1">{{total}}</strong>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 col-md-6">
+            
+            <a href="javascript:void(0);" class="btn btnTheme w-100 fwEbold text-center text-white md-round py-3 px-4 py-md-3 px-md-4">Proceed to checkout</a>
+        </div>
+    </div>
+</div>

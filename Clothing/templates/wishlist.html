@@ -1,0 +1,71 @@
+{% include "header.html" %}
+{% load static %}
+<style>
+    .imgHold img {
+        width: auto;
+        /* স্বাভাবিক আকার */
+        height: auto;
+        /* স্বাভাবিক আকার */
+        max-width: 100%;
+        /* প্যারেন্টের ১০০% আকারে সীমাবদ্ধ */
+        max-height: 50px;
+        /* ১৫০ পিক্সেলের সর্বাধিক উচ্চতা */
+    }
+</style>
+
+
+<div class="cartHolder container pt-xl-21 pb-xl-24 py-lg-20 py-md-16 py-10">
+    <div class="row">
+        <!-- table-responsive -->
+        <div class="col-12 table-responsive mb-lg-20 mb-md-16 mb-10">
+            <!-- cartTable -->
+            {%if wishItem %}
+            <table class="table cartTable mb-xl-22">
+                <thead>
+                    <tr>
+                        <th scope="col" class="text-uppercase fwEbold border-top-0">product</th>
+                        <th scope="col" class="text-uppercase fwEbold border-top-0">price</th>
+                        <th scope="col" class="text-uppercase fwEbold border-top-0">Add to Cart</th>
+                        <th scope="col" class="text-uppercase fwEbold border-top-0">Delete</th>
+                    </tr>
+                </thead>
+                {%for item in wishItem%}
+                <tbody>
+                    <tr class="align-items-center">
+                        <td class="d-flex align-items-center border-top-0 border-bottom px-0 py-6">
+                            <div class="imgHold">
+                                <img src='{{item.product.image.url}}' alt="image description" class="img-fluid">
+                                
+                            </div>
+                            <span class="title pl-2"><a href="{{item.product.url}}">{{item.product.name}}</a></span>
+                        </td>
+                        <td class="fwEbold border-top-0 border-bottom px-0 py-6">{{item.product.price}}</td>
+                        <td class="border-top-0 border-bottom px-0 py-6">
+                            {% if item.product in x %}
+                                Already in cart
+                            {%else%}
+                                <a href="{% url 'addCart' item.product.id %}"><svg xmlns="http://www.w3.org/2000/svg"
+                                    width="20" height="20" fill="black" class="bi bi-cart-plus-fill"
+                                    viewBox="0 0 16 16">
+                                    <path
+                                        d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0m7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0M9 5.5V7h1.5a.5.5 0 0 1 0 1H9v1.5a.5.5 0 0 1-1 0V8H6.5a.5.5 0 0 1 0-1H8V5.5a.5.5 0 0 1 1 0" />
+                                </svg></a>
+                            {%endif%}
+                        </td>
+
+                        <td class="fwEbold border-top-0 border-bottom px-0 py-6"> <a class="nav-link position-relative"
+                                href="{% url 'deleteWish' item.product.id %}"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="black"
+                                    class="bi bi-trash" viewBox="0 0 16 16">
+                                    <path
+                                        d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0" />
+                                </svg></a> </td>
+                    </tr>
+                </tbody>
+                {%endfor%}
+                {%else%}
+                <h3>List is Empty</h3>  
+            </table>
+            {%endif%}
+        </div>
+    </div>
+</div>
